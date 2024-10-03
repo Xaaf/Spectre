@@ -16,9 +16,16 @@ set(GLFW_INSTALL OFF CACHE BOOL "GLFW Lib Only")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../external/glfw ${CMAKE_CURRENT_BINARY_DIR}/build/glfw)
 
 set(ENGINE_SOURCES
-        src/Spectre/Engine.cpp)
+        src/Spectre/Engine.cpp
+        src/Spectre/Rendering/Renderer.cpp
+        src/Spectre/Rendering/Window.cpp
+        src/Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.cpp)
 set(ENGINE_HEADERS
         include/Spectre/Engine.h
+        include/Spectre/Rendering/Renderer.h
+        include/Spectre/Rendering/RendererInterface.h
+        include/Spectre/Rendering/Window.h
+        include/Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.h
         include/Spectre/System/Logging/Colours.h
         include/Spectre/System/Logging/Log.h
         include/Spectre/System/Logging/LogLevels.h)

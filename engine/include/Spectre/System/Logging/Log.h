@@ -8,7 +8,7 @@
 #include "Colours.h"
 #include "LogLevels.h"
 
-#define CURRENT_LOG_LEVEL LOG_LEVEL_DEBUG
+#define CURRENT_LOG_LEVEL LOG_LEVEL_TRACE
 
 inline std::string currentTimeFormatted() {
     auto now = std::chrono::system_clock::now();

@@ -10,8 +10,7 @@ void GameLogic::setup(const std::string& renderer) {
 }
 
 void GameLogic::run() {
-    LOG_INFO("Game", "GameLogic::run");
-    // while(engine->isRunning()) {
-    //     engine->step();
-    // }
+    while(engine->isRunning()) {
+        engine->step();
+    }
 }

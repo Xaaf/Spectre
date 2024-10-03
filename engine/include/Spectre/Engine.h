@@ -1,12 +1,15 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include "Spectre/Rendering/Renderer.h"
+#include "Spectre/Rendering/RendererInterface.h"
+#include "Spectre/Rendering/Window.h"
 #include "sppch.h"
 
 namespace Spectre {
 class Engine {
     private:
-        // Window* m_Window;    
+        Window* m_Window;
         bool m_IsRunning;
 
         static Engine* instance;
