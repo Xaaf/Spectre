@@ -3,7 +3,7 @@
 Game::GameLogic game = Game::GameLogic();
 int main(int argc, char* argv[]) {
     std::string renderer = "OpenGL";
-    LOG_INFO("Game", "Launching with renderer: " << renderer);
+    LOG_INFO("Launching with renderer: " << renderer);
 
     game.setup(renderer);
 

@@ -5,6 +5,7 @@
 #include <ctime>
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 #include "Colours.h"
 #include "LogLevels.h"
 
@@ -25,21 +26,69 @@ inline std::string currentTimeFormatted() {
     return oss.str();
 }
 
-#define LOG(level, color, levelStr, tag, message)                            \
-    do {                                                                     \
-        if (level >= CURRENT_LOG_LEVEL) {                                    \
-            std::cerr << WHITE << currentTimeFormatted() << " > " << color \
-                      << "[" << levelStr << ": " << tag << "] " << message   \
-                      << RESET << std::endl;                                 \
-        }                                                                    \
+inline std::string currentFileFormatted(const std::string& filename,
+                                        const std::string& tag) {
+    size_t last_slash = filename.find_last_of("/\\");
+    std::string file = (last_slash == std::string::npos)
+                           ? filename
+                           : filename.substr(last_slash + 1);
+
+    size_t last_dot = file.find_last_of(".");
+    if (last_dot != std::string::npos) {
+        file = file.substr(0, last_dot);
+    }
+
+    if (tag.empty()) {
+        return file;
+    }
+
+    return file + "#" + tag;
+}
+
+#define LOG(level, color, levelStr, tag, message)                        \
+    do {                                                                 \
+        if (level >= CURRENT_LOG_LEVEL) {                                \
+            std::cerr << WHITE << currentTimeFormatted() << " " << color \
+                      << "[" << levelStr << ": "                         \
+                      << currentFileFormatted(__FILE__, tag) << "] "     \
+                      << message << RESET << std::endl;                  \
+        }                                                                \
     } while (0)
 
-#define LOG_TRACE(tag, message) \
-    LOG(LOG_LEVEL_TRACE, CYAN, "TRACE", tag, message)
-#define LOG_DEBUG(tag, message) \
-    LOG(LOG_LEVEL_DEBUG, MAGENTA, "DEBUG", tag, message)
-#define LOG_INFO(tag, message) LOG(LOG_LEVEL_INFO, WHITE, "INFO", tag, message)
-#define LOG_WARN(tag, message) LOG(LOG_LEVEL_WARN, YELLOW, "WARN", tag, message)
-#define LOG_ERROR(tag, message) LOG(LOG_LEVEL_ERROR, RED, "ERROR", tag, message)
+#define GET_MACRO(_1, _2, NAME, ...) NAME
+
+#define LOG_TRACE(...) \
+    GET_MACRO(__VA_ARGS__, LOG_TRACE_WITH_TAG, LOG_TRACE_NO_TAG)(__VA_ARGS__)
+#define LOG_TRACE_WITH_TAG(tag, message) \
+    LOG(LOG_LEVEL_TRACE, CYAN, "TRC", tag, message)
+#define LOG_TRACE_NO_TAG(message) \
+    LOG(LOG_LEVEL_TRACE, CYAN, "TRC", "", message)
+
+#define LOG_DEBUG(...) \
+    GET_MACRO(__VA_ARGS__, LOG_DEBUG_WITH_TAG, LOG_DEBUG_NO_TAG)(__VA_ARGS__)
+#define LOG_DEBUG_WITH_TAG(tag, message) \
+    LOG(LOG_LEVEL_DEBUG, MAGENTA, "DBG", tag, message)
+#define LOG_DEBUG_NO_TAG(message) \
+    LOG(LOG_LEVEL_DEBUG, MAGENTA, "DBG", "", message)
+
+#define LOG_INFO(...) \
+    GET_MACRO(__VA_ARGS__, LOG_INFO_WITH_TAG, LOG_INFO_NO_TAG)(__VA_ARGS__)
+#define LOG_INFO_WITH_TAG(tag, message) \
+    LOG(LOG_LEVEL_INFO, WHITE, "INF", tag, message)
+#define LOG_INFO_NO_TAG(message) LOG(LOG_LEVEL_INFO, WHITE, "INF", "", message)
+
+#define LOG_WARN(...) \
+    GET_MACRO(__VA_ARGS__, LOG_WARN_WITH_TAG, LOG_WARN_NO_TAG)(__VA_ARGS__)
+#define LOG_WARN_WITH_TAG(tag, message) \
+    LOG(LOG_LEVEL_WARN, YELLOW, "WRN", tag, message)
+#define LOG_WARN_NO_TAG(message) \
+    LOG(LOG_LEVEL_WARN, YELLOW, "WRN", "", message)
+
+#define LOG_ERROR(...) \
+    GET_MACRO(__VA_ARGS__, LOG_ERROR_WITH_TAG, LOG_ERROR_NO_TAG)(__VA_ARGS__)
+#define LOG_ERROR_WITH_TAG(tag, message) \
+    LOG(LOG_LEVEL_ERROR, RED, "ERR", tag, message)
+#define LOG_ERROR_NO_TAG(message) \
+    LOG(LOG_LEVEL_ERROR, RED, "ERR", "", message)
 
 #endif  // LOG_H

@@ -3,10 +3,10 @@
 using namespace Spectre;
 
 bool OpenGLRenderer::initialise() {
-    LOG_INFO("OpenGL", "Initialising OpenGL renderer");
+    LOG_INFO("Initialising OpenGL renderer");
 
     if (!glfwInit()) {
-        LOG_ERROR("OpenGL", "Failed to initialise GLFW!");
+        LOG_ERROR("Failed to initialise GLFW!");
         return false;
     }
 
@@ -19,7 +19,7 @@ bool OpenGLRenderer::initialise() {
 
 bool OpenGLRenderer::createWindow(const std::string& title, int width,
                                   int height) {
-    LOG_INFO("OpenGL", "Creating OpenGL Window");
+    LOG_INFO("Creating OpenGL Window");
 
     m_WindowName = title;
     m_Width = width;
@@ -29,7 +29,7 @@ bool OpenGLRenderer::createWindow(const std::string& title, int width,
                                 nullptr, nullptr);
 
     if (m_Window == nullptr) {
-        LOG_ERROR("OpenGL", "Failed to create new window!");
+        LOG_ERROR("Failed to create new window!");
         glfwTerminate();
 
         return false;
@@ -38,7 +38,7 @@ bool OpenGLRenderer::createWindow(const std::string& title, int width,
     glfwMakeContextCurrent(m_Window);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        LOG_ERROR("OpenGL", "Failed to initialise GLAD!");
+        LOG_ERROR("Failed to initialise GLAD!");
         glfwTerminate();
 
         return false;
@@ -46,12 +46,12 @@ bool OpenGLRenderer::createWindow(const std::string& title, int width,
 
     glViewport(0, 0, m_Width, m_Height);
 
-    LOG_INFO("OpenGL", "Initialised OpenGL viewport (" << m_Width << "x"
-                                                       << m_Height << ")");
-    LOG_INFO("OpenGL", "> GLFW v" << glfwGetVersionString() << ", OpenGL v"
-                                  << glGetString(GL_VERSION));
-    LOG_INFO("OpenGL", "> Graphics Card: " << glGetString(GL_RENDERER) << ", "
-                                           << glGetString(GL_VENDOR));
+    LOG_INFO("Initialised OpenGL viewport (" << m_Width << "x" << m_Height
+                                             << ")");
+    LOG_INFO("> GLFW v" << glfwGetVersionString() << ", OpenGL v"
+                        << glGetString(GL_VERSION));
+    LOG_INFO("> Graphics Card: " << glGetString(GL_RENDERER) << ", "
+                                 << glGetString(GL_VENDOR));
 
     return true;
 }
@@ -69,7 +69,7 @@ void OpenGLRenderer::render() {
 }
 
 void OpenGLRenderer::stop() {
-    LOG_TRACE("OpenGL", "Terminating renderer");
+    LOG_TRACE("Terminating renderer");
 
     glfwTerminate();
 }

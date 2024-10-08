@@ -8,7 +8,7 @@ std::shared_ptr<RendererInterface> Renderer::m_Renderer = nullptr;
 
 Renderer* Renderer::getInstance() {
     if (m_Instance == nullptr) {
-        LOG_TRACE("Renderer", "There is no renderer! Creating one now.");
+        LOG_TRACE("There is no renderer! Creating one now.");
         m_Instance = new Renderer();
     }
 
@@ -23,12 +23,12 @@ bool Renderer::createRenderer(RendererType type) {
 
             return true;
         case RendererType::Vulkan:
-            LOG_ERROR("Renderer",
-                      "Trying to create a Vulkan renderer, but Vulkan isn't "
-                      "supported!");
+            LOG_ERROR(
+                "Trying to create a Vulkan renderer, but Vulkan isn't "
+                "supported!");
             return false;
         default:
-            LOG_ERROR("Renderer", "Unknown renderer!");
+            LOG_ERROR("Unknown renderer!");
             return false;
     }
 }

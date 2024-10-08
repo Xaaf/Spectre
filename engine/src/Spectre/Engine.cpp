@@ -16,13 +16,13 @@ Engine* Engine::getInstance() {
 }
 
 void Engine::initialise(const std::string& title, const std::string& renderer) {
-    LOG_INFO("Engine", "Initialising with name '"
-                           << title << "' (renderer: " << renderer << ")");
+    LOG_INFO("Initialising with name '" << title << "' (renderer: " << renderer
+                                        << ")");
 
     m_Window =
         new Window(title, 1280, 720, Renderer::stringToRenderType(renderer));
     if (!m_Window->create()) {
-        LOG_ERROR("Engine", "Unable to create a window. Exiting...");
+        LOG_ERROR("Unable to create a window. Exiting...");
         exit(-1);
     }
 
