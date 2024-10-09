@@ -2,6 +2,11 @@
 
 using namespace Spectre;
 
+void OpenGLRenderer::resizeCallback(GLFWwindow* window, int width, int height) {
+    LOG_TRACE("Resizing to " << width << "x" << height);
+    glViewport(0, 0, width, height);
+}
+
 bool OpenGLRenderer::initialise() {
     LOG_INFO("Initialising OpenGL renderer");
 
@@ -44,7 +49,16 @@ bool OpenGLRenderer::createWindow(const std::string& title, int width,
         return false;
     }
 
+    // Set viewport & resize callback
     glViewport(0, 0, m_Width, m_Height);
+    glfwSetFramebufferSizeCallback(
+        m_Window, [](GLFWwindow* window, int width, int height) {
+            OpenGLRenderer* renderer =
+                static_cast<OpenGLRenderer*>(glfwGetWindowUserPointer(window));
+            renderer->resizeCallback(window, width, height);
+        });
+
+    glfwSetWindowUserPointer(m_Window, this);
 
     LOG_INFO("Initialised OpenGL viewport (" << m_Width << "x" << m_Height
                                              << ")");

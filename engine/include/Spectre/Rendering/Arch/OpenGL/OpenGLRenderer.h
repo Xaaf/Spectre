@@ -14,6 +14,9 @@ class OpenGLRenderer : public RendererInterface {
         int m_Width;
         int m_Height;
 
+    private:
+        void resizeCallback(GLFWwindow* window, int width, int height);
+
     public:
         bool initialise() override;
         bool createWindow(const std::string& title, int width,
