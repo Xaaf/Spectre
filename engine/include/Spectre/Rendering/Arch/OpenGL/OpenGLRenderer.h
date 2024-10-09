@@ -22,7 +22,7 @@ class OpenGLRenderer : public RendererInterface {
         bool createWindow(const std::string& title, int width,
                           int height) override;
 
-        void render() override;
+        void update() override;
         void stop() override;
 };
 }  // namespace Spectre

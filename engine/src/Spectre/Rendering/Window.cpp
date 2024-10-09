@@ -28,7 +28,7 @@ bool Window::create() {
     return true;
 }
 
-void Window::update() { Renderer::getRenderer()->render(); }
+void Window::update() { Renderer::getRenderer()->update(); }
 
 void Window::close() {
     LOG_TRACE("Calling Window::close");
