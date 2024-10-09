@@ -1,4 +1,5 @@
 #include "Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.h"
+#include "Spectre/Input/Keyboard.h"
 
 using namespace Spectre;
 
@@ -57,6 +58,11 @@ bool OpenGLRenderer::createWindow(const std::string& title, int width,
                 static_cast<OpenGLRenderer*>(glfwGetWindowUserPointer(window));
             renderer->resizeCallback(window, width, height);
         });
+
+    // Set input clalback
+    glfwSetKeyCallback(m_Window,
+                       [](GLFWwindow* window, int key, int scancode, int action,
+                          int mods) { Keyboard::registerAction(key, action); });
 
     glfwSetWindowUserPointer(m_Window, this);
 
