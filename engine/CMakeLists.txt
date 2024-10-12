@@ -18,6 +18,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../external/glfw ${CMAKE_CURRENT_BI
 set(ENGINE_SOURCES
         src/Spectre/Engine.cpp
         src/Spectre/Input/Keyboard.cpp
+        src/Spectre/Input/Mouse.cpp
         src/Spectre/Rendering/Renderer.cpp
         src/Spectre/Rendering/Window.cpp
         src/Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.cpp)
@@ -25,6 +26,7 @@ set(ENGINE_HEADERS
         include/Spectre/Engine.h
         include/Spectre/Input/InputCodes.h
         include/Spectre/Input/Keyboard.h
+        include/Spectre/Input/Mouse.h
         include/Spectre/Rendering/Renderer.h
         include/Spectre/Rendering/RendererInterface.h
         include/Spectre/Rendering/Window.h

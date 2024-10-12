@@ -1,5 +1,6 @@
 #include "Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.h"
 #include "Spectre/Input/Keyboard.h"
+#include "Spectre/Input/Mouse.h"
 
 using namespace Spectre;
 
@@ -63,6 +64,15 @@ bool OpenGLRenderer::createWindow(const std::string& title, int width,
     glfwSetKeyCallback(m_Window,
                        [](GLFWwindow* window, int key, int scancode, int action,
                           int mods) { Keyboard::registerAction(key, action); });
+
+    glfwSetMouseButtonCallback(
+        m_Window, [](GLFWwindow* window, int button, int action, int mods) {
+            Mouse::registerAction(button, action);
+        });
+    glfwSetCursorPosCallback(m_Window,
+                             [](GLFWwindow* window, double xpos, double ypos) {
+                                 Mouse::registerMove(xpos, ypos);
+                             });
 
     glfwSetWindowUserPointer(m_Window, this);
 
