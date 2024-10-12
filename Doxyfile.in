@@ -1,0 +1,16 @@
+# Doxyfile.in - Template for Doxygen configuration
+
+PROJECT_NAME           = @PROJECT_NAME@
+OUTPUT_DIRECTORY       = @CMAKE_CURRENT_BINARY_DIR@/docs
+INPUT                  = @CMAKE_SOURCE_DIR@/engine/include @CMAKE_SOURCE_DIR@/game/include
+RECURSIVE              = YES
+
+# If you want to include source files in the documentation
+FILE_PATTERNS          = *.cpp *.h
+
+# Generate HTML output
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+
+# You can enable PDF output if needed (requires LaTeX)
+GENERATE_LATEX         = NO
