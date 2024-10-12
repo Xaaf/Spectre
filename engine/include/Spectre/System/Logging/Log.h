@@ -11,6 +11,11 @@
 
 #define CURRENT_LOG_LEVEL LOG_LEVEL_TRACE
 
+/**
+ * @brief Fetches the current time in the `HH:MM:SS` format.
+ *
+ * @return Current time in the format.
+ */
 inline std::string currentTimeFormatted() {
     auto now = std::chrono::system_clock::now();
     auto now_c = std::chrono::system_clock::to_time_t(now);
@@ -26,6 +31,15 @@ inline std::string currentTimeFormatted() {
     return oss.str();
 }
 
+/**
+ * @brief Formats the given filename to just the filename.
+ *
+ * Strips off the absolute path, yielding just the filename, without extension.
+ *
+ * @param filename Filename (with its path) to strip.
+ * @param tag Tag to use in the filename.
+ * @return Formatted filename, in the form of "Filename#Tag".
+ */
 inline std::string currentFileFormatted(const std::string& filename,
                                         const std::string& tag) {
     size_t last_slash = filename.find_last_of("/\\");
@@ -61,8 +75,7 @@ inline std::string currentFileFormatted(const std::string& filename,
     GET_MACRO(__VA_ARGS__, LOG_TRACE_WITH_TAG, LOG_TRACE_NO_TAG)(__VA_ARGS__)
 #define LOG_TRACE_WITH_TAG(tag, message) \
     LOG(LOG_LEVEL_TRACE, CYAN, "TRC", tag, message)
-#define LOG_TRACE_NO_TAG(message) \
-    LOG(LOG_LEVEL_TRACE, CYAN, "TRC", "", message)
+#define LOG_TRACE_NO_TAG(message) LOG(LOG_LEVEL_TRACE, CYAN, "TRC", "", message)
 
 #define LOG_DEBUG(...) \
     GET_MACRO(__VA_ARGS__, LOG_DEBUG_WITH_TAG, LOG_DEBUG_NO_TAG)(__VA_ARGS__)
@@ -81,14 +94,12 @@ inline std::string currentFileFormatted(const std::string& filename,
     GET_MACRO(__VA_ARGS__, LOG_WARN_WITH_TAG, LOG_WARN_NO_TAG)(__VA_ARGS__)
 #define LOG_WARN_WITH_TAG(tag, message) \
     LOG(LOG_LEVEL_WARN, YELLOW, "WRN", tag, message)
-#define LOG_WARN_NO_TAG(message) \
-    LOG(LOG_LEVEL_WARN, YELLOW, "WRN", "", message)
+#define LOG_WARN_NO_TAG(message) LOG(LOG_LEVEL_WARN, YELLOW, "WRN", "", message)
 
 #define LOG_ERROR(...) \
     GET_MACRO(__VA_ARGS__, LOG_ERROR_WITH_TAG, LOG_ERROR_NO_TAG)(__VA_ARGS__)
 #define LOG_ERROR_WITH_TAG(tag, message) \
     LOG(LOG_LEVEL_ERROR, RED, "ERR", tag, message)
-#define LOG_ERROR_NO_TAG(message) \
-    LOG(LOG_LEVEL_ERROR, RED, "ERR", "", message)
+#define LOG_ERROR_NO_TAG(message) LOG(LOG_LEVEL_ERROR, RED, "ERR", "", message)
 
 #endif  // LOG_H

@@ -1,6 +1,9 @@
 #ifndef LOGLEVELS_H
 #define LOGLEVELS_H
 
+/**
+ * @brief Enum holding the various levels of log severity.
+ */
 enum LogLevel {
     LOG_LEVEL_TRACE,
     LOG_LEVEL_DEBUG,
