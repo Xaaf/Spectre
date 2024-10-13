@@ -21,6 +21,7 @@ set(ENGINE_SOURCES
         src/Spectre/Input/Mouse.cpp
         src/Spectre/Rendering/Renderer.cpp
         src/Spectre/Rendering/Window.cpp
+        src/Spectre/Rendering/Arch/OpenGL/OpenGLShader.cpp
         src/Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.cpp)
 set(ENGINE_HEADERS
         include/Spectre/Engine.h
@@ -29,8 +30,10 @@ set(ENGINE_HEADERS
         include/Spectre/Input/Mouse.h
         include/Spectre/Rendering/Renderer.h
         include/Spectre/Rendering/RendererInterface.h
+        include/Spectre/Rendering/ShaderInterface.h
         include/Spectre/Rendering/Window.h
         include/Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.h
+        include/Spectre/Rendering/Arch/OpenGL/OpenGLShader.h
         include/Spectre/System/Logging/Colours.h
         include/Spectre/System/Logging/Log.h
         include/Spectre/System/Logging/LogLevels.h)

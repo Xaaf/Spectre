@@ -2,6 +2,7 @@
 #define OPENGLRENDERER_H
 
 #include "Spectre/Engine.h"
+#include "Spectre/Rendering/Arch/OpenGL/OpenGLShader.h"
 #include "Spectre/Rendering/RendererInterface.h"
 #include "sppch.h"
 

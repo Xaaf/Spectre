@@ -43,59 +43,13 @@ unsigned int fragmentShader;
 
 unsigned int shaderProgram;
 
+OpenGLShader* shader = nullptr;
+
 void temp_init() {
     LOG_DEBUG("Calling #temp_init()");
 
-#pragma region SHADERS
-    // Create a new vertex shader, set `vertexShader` to that ID.
-    vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    // Attach the shader source to the shader object
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
-
-    int success;
-    char infoLog[512];
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        LOG_ERROR("Vertex", "Failed shader compliation.");
-        LOG_ERROR("Vertex", infoLog);
-    }
-
-    // Do the same things for fragment
-    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
-
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        LOG_ERROR("Fragment", "Failed shader compliation.");
-        LOG_ERROR("Fragment", infoLog);
-    }
-
-    // We now need to link the shaders into a program. First, we need to create
-    // a program and feed its ID into `shaderProgram`.
-    shaderProgram = glCreateProgram();
-
-    // Now, we can attach the shaders to this program
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    // Then we can link!
-    glLinkProgram(shaderProgram);
-
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        LOG_ERROR("Shader", "Failed shader compliation.");
-        LOG_ERROR("Shader", infoLog);
-    }
-
-    // The shaders are now linked, so let's delete the shader objects as they're
-    // now redundant.
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
-#pragma endregion SHADERS
+    shader = new OpenGLShader("assets/shaders/Default.vert",
+                              "assets/shaders/Default.frag");
 
 #pragma region VAO, VBO, EBO
     // The generation order of VAO, VBO and EBOs doesn't really matter that much
@@ -239,7 +193,8 @@ void OpenGLRenderer::update() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // === TEMPORARY ===
-    glUseProgram(shaderProgram);
+    // glUseProgram(shaderProgram);
+    shader->use();
     glBindVertexArray(vao);
     // glDrawArrays(GL_TRIANGLES, 0, 3);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
