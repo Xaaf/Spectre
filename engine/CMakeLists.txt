@@ -10,6 +10,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/glfw/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/glm)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/stb/include)
 
+
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "GLFW Lib Only")
 set(GLFW_INSTALL OFF CACHE BOOL "GLFW Lib Only")
 
