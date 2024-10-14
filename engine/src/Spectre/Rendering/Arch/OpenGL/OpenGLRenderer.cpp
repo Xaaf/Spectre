@@ -1,101 +1,35 @@
 #include "Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.h"
 #include "Spectre/Input/Keyboard.h"
 #include "Spectre/Input/Mouse.h"
+#include "Spectre/Rendering/Arch/OpenGL/OpenGLMesh.h"
 
 using namespace Spectre;
 
 /*================================ TEMPORARY ================================*/
 
 // Object related
-float vertices[] = {
-    0.5f,  0.5f,  0.0f,  // top right
-    0.5f,  -0.5f, 0.0f,  // bottom right
-    -0.5f, -0.5f, 0.0f,  // bottom left
-    -0.5f, 0.5f,  0.0f   // top left
+std::vector<Vertex> vertices = {
+    {glm::vec3(0.5f, 0.5f, 0.0f)},    // top right
+    {glm::vec3(0.5f, -0.5f, 0.0f)},   // bottom right
+    {glm::vec3(-0.5f, -0.5f, 0.0f)},  // bottom left
+    {glm::vec3(-0.5f, 0.5f, 0.0f)}    // top left
 };
 
-unsigned int indices[] = {
+std::vector<int> indices = {
     // note that we start from 0!
     0, 1, 3,  // first triangle
     1, 2, 3   // second triangle
 };
 
-unsigned int vao, vbo, ebo;
-
-// Shaders
-const char* vertexShaderSource =
-    "#version 330 core\n"
-    "layout (location = 0) in vec3 aPos;\n"
-    "void main()\n"
-    "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-    "}\0";
-unsigned int vertexShader;
-
-const char* fragmentShaderSource =
-    "#version 330 core\n"
-    "out vec4 FragColor;"
-    "void main()\n"
-    "{\n"
-    "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-    "}\0";
-unsigned int fragmentShader;
-
-unsigned int shaderProgram;
-
 OpenGLShader* shader = nullptr;
+OpenGLMesh* mesh = nullptr;
 
 void temp_init() {
     LOG_DEBUG("Calling #temp_init()");
 
     shader = new OpenGLShader("assets/shaders/Default.vert",
                               "assets/shaders/Default.frag");
-
-#pragma region VAO, VBO, EBO
-    // The generation order of VAO, VBO and EBOs doesn't really matter that much
-    glGenVertexArrays(1, &vao);
-    // 1 comes from how many buffer objects we'd to generate,
-    // e.g. we can also feed into an array of uints.
-    glGenBuffers(1, &vbo);
-    glGenBuffers(1, &ebo);
-
-    // Order is as follows
-    // - Bind VAO
-    // - Set vertex buffers
-    // - Configure vertex attributes
-    glBindVertexArray(vao);
-
-    // Bind the buffer to the `GL_ARRAY_BUFFER` target.
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-    // Feed the vertices into the buffer, which is now bound to
-    // `GL_ARRAY_BUFFER`.
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    // Bind the EBO and copy the indices
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices,
-                 GL_STATIC_DRAW);
-
-    // We can tell OpenGL how to interpret vertex data per vertex attribute as
-    // follows. The first parameter specifies which attribute we want to
-    // congfigure. In our case, we said in our vertex shader (line 14) that the
-    // shader should expect the position to be in attribute 0 (layout = 0). The
-    // second parameter is the size of the vertex attribute, 3 being a vec3 in
-    // our case. Third argument specifies the type, since we're passing in
-    // floats, a GL_FLOAT will do. The fourth argument is whether we want data
-    // to be normalised, which currently isn't relevant for us. The fifth
-    // argument is known as the stride, which is basically how much space is
-    // between consecutive attributes. We know that the next set of position
-    // data is located exactly three times the size of a float away, since each
-    // position is three floats. The last parameter is the offset, which we do
-    // not care about right now either.
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
-                          (void*)0);
-
-    // Next up, we need to enable the vertex attribute.
-    glEnableVertexAttribArray(0);
-#pragma endregion VAO, VBO, EBO
+    mesh = new OpenGLMesh(vertices, indices);
 }
 
 /*===========================================================================*/
@@ -195,8 +129,8 @@ void OpenGLRenderer::update() {
     // === TEMPORARY ===
     // glUseProgram(shaderProgram);
     shader->use();
-    glBindVertexArray(vao);
-    // glDrawArrays(GL_TRIANGLES, 0, 3);
+    mesh->bind();
+
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     // === TEMPORARY ===
 

@@ -22,17 +22,21 @@ set(ENGINE_SOURCES
         src/Spectre/Input/Mouse.cpp
         src/Spectre/Rendering/Renderer.cpp
         src/Spectre/Rendering/Window.cpp
-        src/Spectre/Rendering/Arch/OpenGL/OpenGLShader.cpp
-        src/Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.cpp)
+        src/Spectre/Rendering/Arch/OpenGL/OpenGLMesh.cpp
+        src/Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.cpp
+        src/Spectre/Rendering/Arch/OpenGL/OpenGLShader.cpp)
 set(ENGINE_HEADERS
         include/Spectre/Engine.h
         include/Spectre/Input/InputCodes.h
         include/Spectre/Input/Keyboard.h
         include/Spectre/Input/Mouse.h
+        include/Spectre/Rendering/MeshInterface.h
         include/Spectre/Rendering/Renderer.h
         include/Spectre/Rendering/RendererInterface.h
         include/Spectre/Rendering/ShaderInterface.h
+        include/Spectre/Rendering/Vertex.h
         include/Spectre/Rendering/Window.h
+        include/Spectre/Rendering/Arch/OpenGL/OpenGLMesh.h
         include/Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.h
         include/Spectre/Rendering/Arch/OpenGL/OpenGLShader.h
         include/Spectre/System/Logging/Colours.h
