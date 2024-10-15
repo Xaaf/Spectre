@@ -27,6 +27,11 @@ OpenGLMesh::OpenGLMesh(std::vector<Vertex> vertices, std::vector<int> indices) {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
     glEnableVertexAttribArray(0);
 
+    // Colour attribute (location = 1)a
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+                          (void*)offsetof(Vertex, colour));
+    glEnableVertexAttribArray(1);
+
     // Unbind VAO
     glBindVertexArray(0);
 }

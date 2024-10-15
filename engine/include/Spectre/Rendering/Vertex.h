@@ -13,6 +13,11 @@ struct Vertex {
          * @brief Position of the vertex in 3D space (x, y, z).
          */
         glm::vec3 position;
+
+        /**
+         * @brief Colour value of this vertex (r, g, b).
+         */
+        glm::vec3 colour;
 };
 }  // namespace Spectre
 

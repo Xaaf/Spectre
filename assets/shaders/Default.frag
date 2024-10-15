@@ -2,7 +2,9 @@
 
 out vec4 FragColour;
 
+in vec3 ourColour;
+
 void main()
 {
-    FragColour = vec4(0.2f, 0.5f, 0.2f, 1.0f);
+    FragColour = vec4(ourColour.x, ourColour.y, ourColour.z, 1.0f);
 }
