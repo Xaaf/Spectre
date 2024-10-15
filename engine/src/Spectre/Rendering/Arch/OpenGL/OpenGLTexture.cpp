@@ -28,15 +28,11 @@ OpenGLTexture::OpenGLTexture(const std::string& texturePath) {
         return;
     }
 
-    // Fetch the format to account for transparency
-    LOG_DEBUG(channels);
-    GLenum format;
+    // Generate the texture (depending on the format, according to file type)
     if (channels == 4) {
-        // Generate the texture
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA,
                      GL_UNSIGNED_BYTE, data);
     } else {
-        // Generate the texture
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
                      GL_UNSIGNED_BYTE, data);
     }
