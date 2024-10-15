@@ -24,7 +24,8 @@ set(ENGINE_SOURCES
         src/Spectre/Rendering/Window.cpp
         src/Spectre/Rendering/Arch/OpenGL/OpenGLMesh.cpp
         src/Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.cpp
-        src/Spectre/Rendering/Arch/OpenGL/OpenGLShader.cpp)
+        src/Spectre/Rendering/Arch/OpenGL/OpenGLShader.cpp
+        src/Spectre/Rendering/Arch/OpenGL/OpenGLTexture.cpp)
 set(ENGINE_HEADERS
         include/Spectre/Engine.h
         include/Spectre/Input/InputCodes.h
@@ -34,11 +35,13 @@ set(ENGINE_HEADERS
         include/Spectre/Rendering/Renderer.h
         include/Spectre/Rendering/RendererInterface.h
         include/Spectre/Rendering/ShaderInterface.h
+        include/Spectre/Rendering/TextureInterface.h
         include/Spectre/Rendering/Vertex.h
         include/Spectre/Rendering/Window.h
         include/Spectre/Rendering/Arch/OpenGL/OpenGLMesh.h
         include/Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.h
         include/Spectre/Rendering/Arch/OpenGL/OpenGLShader.h
+        include/Spectre/Rendering/Arch/OpenGL/OpenGLTexture.h
         include/Spectre/System/Logging/Colours.h
         include/Spectre/System/Logging/Log.h
         include/Spectre/System/Logging/LogLevels.h)

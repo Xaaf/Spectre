@@ -18,6 +18,11 @@ struct Vertex {
          * @brief Colour value of this vertex (r, g, b).
          */
         glm::vec3 colour;
+
+        /**
+         * @brief Coordinates of this vertex on the texture.
+         */
+        glm::vec2 textureCoords;
 };
 }  // namespace Spectre
 

@@ -32,6 +32,11 @@ OpenGLMesh::OpenGLMesh(std::vector<Vertex> vertices, std::vector<int> indices) {
                           (void*)offsetof(Vertex, colour));
     glEnableVertexAttribArray(1);
 
+    // Texture coordinate attribute (location = 2)
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+                          (void*)offsetof(Vertex, textureCoords));
+    glEnableVertexAttribArray(2);
+
     // Unbind VAO
     glBindVertexArray(0);
 }

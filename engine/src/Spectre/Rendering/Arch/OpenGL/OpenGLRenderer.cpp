@@ -2,6 +2,7 @@
 #include "Spectre/Input/Keyboard.h"
 #include "Spectre/Input/Mouse.h"
 #include "Spectre/Rendering/Arch/OpenGL/OpenGLMesh.h"
+#include "Spectre/Rendering/Arch/OpenGL/OpenGLTexture.h"
 
 using namespace Spectre;
 
@@ -10,13 +11,17 @@ using namespace Spectre;
 // Object related
 std::vector<Vertex> vertices = {
     // top right
-    {glm::vec3(0.5f, 0.5f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f)},
+    {glm::vec3(0.5f, 0.5f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f),
+     glm::vec2(1.0f, 1.0f)},
     // bottom right
-    {glm::vec3(0.5f, -0.5f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)},
+    {glm::vec3(0.5f, -0.5f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f),
+     glm::vec2(1.0f, 0.0f)},
     // bottom left
-    {glm::vec3(-0.5f, -0.5f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)},
+    {glm::vec3(-0.5f, -0.5f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f),
+     glm::vec2(0.0f, 0.0f)},
     // top left
-    {glm::vec3(-0.5f, 0.5f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f)}};
+    {glm::vec3(-0.5f, 0.5f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f),
+     glm::vec2(0.0f, 1.0f)}};
 
 std::vector<int> indices = {
     // note that we start from 0!
@@ -26,6 +31,7 @@ std::vector<int> indices = {
 
 OpenGLShader* shader = nullptr;
 OpenGLMesh* mesh = nullptr;
+OpenGLTexture* texture = nullptr;
 
 void temp_init() {
     LOG_DEBUG("Calling #temp_init()");
@@ -33,6 +39,7 @@ void temp_init() {
     shader = new OpenGLShader("assets/shaders/Default.vert",
                               "assets/shaders/Default.frag");
     mesh = new OpenGLMesh(vertices, indices);
+    texture = new OpenGLTexture("assets/textures/wall.jpg");
 }
 
 /*===========================================================================*/
@@ -132,6 +139,7 @@ void OpenGLRenderer::update() {
     // === TEMPORARY ===
     // glUseProgram(shaderProgram);
     shader->use();
+    texture->bind();
     mesh->bind();
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
