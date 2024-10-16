@@ -1,7 +1,7 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "Spectre/Rendering/RendererInterface.h"
+#include "Spectre/Rendering/RendererBase.h"
 #include "sppch.h"
 
 namespace Spectre {
@@ -30,7 +30,7 @@ class Renderer {
          * This holds a reference to the specific render API that is being used,
          * e.g. an `OpenGLRenderer` instance.
          */
-        static std::shared_ptr<RendererInterface> m_Renderer;
+        static std::shared_ptr<RendererBase> m_Renderer;
 
     private:
         /**
@@ -57,7 +57,7 @@ class Renderer {
          *
          * @return The current renderer instance, e.g. an `OpenGLRenderer`.
          */
-        static std::shared_ptr<RendererInterface> getRenderer();
+        static std::shared_ptr<RendererBase> getRenderer();
 
         /**
          * @brief Create a new renderer.

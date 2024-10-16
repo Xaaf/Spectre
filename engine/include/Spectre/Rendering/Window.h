@@ -2,7 +2,7 @@
 #define WINDOW_H
 
 #include "Spectre/Rendering/Renderer.h"
-#include "Spectre/Rendering/RendererInterface.h"
+#include "Spectre/Rendering/RendererBase.h"
 #include "sppch.h"
 
 namespace Spectre {

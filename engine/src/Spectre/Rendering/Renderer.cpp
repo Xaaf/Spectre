@@ -4,7 +4,7 @@
 using namespace Spectre;
 
 Renderer* Renderer::m_Instance = nullptr;
-std::shared_ptr<RendererInterface> Renderer::m_Renderer = nullptr;
+std::shared_ptr<RendererBase> Renderer::m_Renderer = nullptr;
 
 Renderer* Renderer::getInstance() {
     if (m_Instance == nullptr) {
@@ -33,9 +33,7 @@ bool Renderer::createRenderer(RendererType type) {
     }
 }
 
-std::shared_ptr<RendererInterface> Renderer::getRenderer() {
-    return m_Renderer;
-}
+std::shared_ptr<RendererBase> Renderer::getRenderer() { return m_Renderer; }
 
 RendererType Renderer::stringToRenderType(const std::string& renderer) {
     if (renderer == "Vulkan") {

@@ -1,5 +1,5 @@
-#ifndef MESHINTERFACE_H
-#define MESHINTERFACE_H
+#ifndef MESHBASE_H
+#define MESHBASE_H
 
 #include "Spectre/Rendering/Vertex.h"
 #include "sppch.h"
@@ -12,12 +12,12 @@ namespace Spectre {
  * least the function contained in this interface to be viable for use in the
  * engine's renderers.
  */
-class MeshInterface {
+class MeshBase {
     public:
         /**
          * @brief Destroy the mesh object.
          */
-        virtual ~MeshInterface() = default;
+        virtual ~MeshBase() = default;
 
         /**
          * @brief Bind the GPU-specfic objects.
@@ -37,4 +37,4 @@ class MeshInterface {
 };
 }  // namespace Spectre
 
-#endif  // MESHINTERFACE_H
+#endif  // MESHBASE_H

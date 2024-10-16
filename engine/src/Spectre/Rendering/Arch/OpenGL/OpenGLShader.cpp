@@ -5,7 +5,7 @@ using namespace Spectre;
 
 OpenGLShader::OpenGLShader(const std::string& vertexPath,
                            const std::string& fragmentPath)
-    : ShaderInterface(vertexPath, fragmentPath) {
+    : ShaderBase(vertexPath, fragmentPath) {
     LOG_DEBUG("Creating a new shader from '"
               << std::filesystem::absolute(vertexPath) << "', '"
               << std::filesystem::absolute(fragmentPath) << "'");

@@ -1,16 +1,16 @@
 #ifndef OPENGLTEXTURE_H
 #define OPENGLTEXTURE_H
 
-#include "Spectre/Rendering/TextureInterface.h"
+#include "Spectre/Rendering/TextureBase.h"
 #include "sppch.h"
 
 namespace Spectre {
 /**
- * @brief OpenGL implementation of the TextureInterface.
+ * @brief OpenGL implementation of the TextureBase.
  *
  * Uses the OpenGL API to handle texture creation, loading and binding.
  */
-class OpenGLTexture : TextureInterface {
+class OpenGLTexture : TextureBase {
     private:
         /**
          * @brief Width of the texture in pixels.

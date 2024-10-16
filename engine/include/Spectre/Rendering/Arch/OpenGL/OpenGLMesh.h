@@ -1,16 +1,16 @@
 #ifndef OPENGLMESH_H
 #define OPENGLMESH_H
 
-#include "Spectre/Rendering/MeshInterface.h"
+#include "Spectre/Rendering/MeshBase.h"
 #include "sppch.h"
 
 namespace Spectre {
 /**
- * @brief OpenGL implementation of the MeshInterface.
+ * @brief OpenGL implementation of the MeshBase.
  *
  * Uses the OpenGL API to handle mesh creation and binding.
  */
-class OpenGLMesh : MeshInterface {
+class OpenGLMesh : MeshBase {
     public:
         /**
          * @brief Creates a new OpenGLMesh.

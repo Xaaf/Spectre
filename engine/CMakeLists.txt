@@ -31,11 +31,11 @@ set(ENGINE_HEADERS
         include/Spectre/Input/InputCodes.h
         include/Spectre/Input/Keyboard.h
         include/Spectre/Input/Mouse.h
-        include/Spectre/Rendering/MeshInterface.h
+        include/Spectre/Rendering/MeshBase.h
         include/Spectre/Rendering/Renderer.h
-        include/Spectre/Rendering/RendererInterface.h
-        include/Spectre/Rendering/ShaderInterface.h
-        include/Spectre/Rendering/TextureInterface.h
+        include/Spectre/Rendering/RendererBase.h
+        include/Spectre/Rendering/ShaderBase.h
+        include/Spectre/Rendering/TextureBase.h
         include/Spectre/Rendering/Vertex.h
         include/Spectre/Rendering/Window.h
         include/Spectre/Rendering/Arch/OpenGL/OpenGLMesh.h

@@ -1,5 +1,5 @@
-#ifndef SHADER_H
-#define SHADER_H
+#ifndef SHADERBASE_H
+#define SHADERBASE_H
 
 #include "sppch.h"
 namespace Spectre {
@@ -10,7 +10,7 @@ namespace Spectre {
  * at least the functions contained in this interface to be viable for use in a
  * renderer in the engine.
  */
-class ShaderInterface {
+class ShaderBase {
     public:
         /**
          * @brief Construct a new shader object.
@@ -22,13 +22,13 @@ class ShaderInterface {
          * @param vertexPath Path to the vertex shader source.
          * @param fragmentPath Path to the fragment shader source.
          */
-        ShaderInterface(const std::string& vertexPath,
-                        const std::string& fragmentPath) {};
+        ShaderBase(const std::string& vertexPath,
+                   const std::string& fragmentPath) {};
 
         /**
          * @brief Destroy the shader object.
          */
-        virtual ~ShaderInterface() = default;
+        virtual ~ShaderBase() = default;
 
         /**
          * @brief Activate this shader.
@@ -72,4 +72,4 @@ class ShaderInterface {
 };
 }  // namespace Spectre
 
-#endif  // SHADER_H
+#endif  // SHADERBASE_H

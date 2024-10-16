@@ -1,5 +1,5 @@
-#ifndef RENDERERINTERFACE_H
-#define RENDERERINTERFACE_H
+#ifndef RENDERERBASE_H
+#define RENDERERBASE_H
 
 #include "sppch.h"
 
@@ -11,13 +11,13 @@ namespace Spectre {
  * needs at least the functions contained in this interface to be viable for use
  * in the engine.
  */
-class RendererInterface {
+class RendererBase {
     public:
         /**
          * @brief Destroy the renderer object.
          *
          */
-        virtual ~RendererInterface() = default;
+        virtual ~RendererBase() = default;
 
         /**
          * @brief Initialise a new renderer.
@@ -62,4 +62,4 @@ class RendererInterface {
 };
 }  // namespace Spectre
 
-#endif  // RENDERERINTERFACE_H
+#endif  // RENDERERBASE_H

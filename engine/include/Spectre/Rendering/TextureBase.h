@@ -1,5 +1,5 @@
-#ifndef TEXTUREINTERFACE_H
-#define TEXTUREINTERFACE_H
+#ifndef TEXTUREBASE_H
+#define TEXTUREBASE_H
 
 #include "sppch.h"
 
@@ -11,12 +11,12 @@ namespace Spectre {
  * needs at least the functions contained in this interface to be viable for use
  * in a renderer in the engine.
  */
-class TextureInterface {
+class TextureBase {
     public:
         /**
          * @brief Destroy the texture object.
          */
-        virtual ~TextureInterface() = default;
+        virtual ~TextureBase() = default;
 
         /**
          * @brief Binds this texture to be the current active texture..
@@ -36,4 +36,4 @@ class TextureInterface {
 };
 }  // namespace Spectre
 
-#endif  // TEXTUREINTERFACE_H
+#endif  // TEXTUREBASE_H

@@ -2,7 +2,7 @@
 #define ENGINE_H
 
 #include "Spectre/Rendering/Renderer.h"
-#include "Spectre/Rendering/RendererInterface.h"
+#include "Spectre/Rendering/RendererBase.h"
 #include "Spectre/Rendering/Window.h"
 #include "sppch.h"
 

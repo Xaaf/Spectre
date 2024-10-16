@@ -2,16 +2,16 @@
 #define OPENGLSHADER_H
 
 #include <fstream>
-#include "Spectre/Rendering/ShaderInterface.h"
+#include "Spectre/Rendering/ShaderBase.h"
 #include "sppch.h"
 
 namespace Spectre {
 /**
- * @brief OpenGL implementation of the ShaderInterface.
+ * @brief OpenGL implementation of the ShaderBase.
  *
  * Uses the OpenGL API to handle shader creation, compilation and usage.
  */
-class OpenGLShader : public ShaderInterface {
+class OpenGLShader : public ShaderBase {
     private:
         /**
          * @brief ID of the shader program associated with this shader.

@@ -3,16 +3,16 @@
 
 #include "Spectre/Engine.h"
 #include "Spectre/Rendering/Arch/OpenGL/OpenGLShader.h"
-#include "Spectre/Rendering/RendererInterface.h"
+#include "Spectre/Rendering/RendererBase.h"
 #include "sppch.h"
 
 namespace Spectre {
 /**
- * @brief OpenGL implementation of the RendererInterface.
+ * @brief OpenGL implementation of the RendererBase.
  *
  * Uses the OpenGL API (through glfw) to handle rendering.
  */
-class OpenGLRenderer : public RendererInterface {
+class OpenGLRenderer : public RendererBase {
     private:
         /**
          * @brief Reference to the GLFW window struct.
