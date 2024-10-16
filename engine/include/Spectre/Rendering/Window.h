@@ -1,9 +1,9 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include "sppch.h"
 #include "Spectre/Rendering/Renderer.h"
 #include "Spectre/Rendering/RendererBase.h"
-#include "sppch.h"
 
 namespace Spectre {
 /**

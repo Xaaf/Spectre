@@ -1,8 +1,8 @@
 #ifndef OPENGLTEXTURE_H
 #define OPENGLTEXTURE_H
 
-#include "Spectre/Rendering/TextureBase.h"
 #include "sppch.h"
+#include "Spectre/Rendering/TextureBase.h"
 
 namespace Spectre {
 /**

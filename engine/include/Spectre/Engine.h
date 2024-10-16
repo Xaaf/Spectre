@@ -1,10 +1,10 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include "sppch.h"
 #include "Spectre/Rendering/Renderer.h"
 #include "Spectre/Rendering/RendererBase.h"
 #include "Spectre/Rendering/Window.h"
-#include "sppch.h"
 
 namespace Spectre {
 /**

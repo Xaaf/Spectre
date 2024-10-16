@@ -1,8 +1,8 @@
 #ifndef OPENGLMESH_H
 #define OPENGLMESH_H
 
-#include "Spectre/Rendering/MeshBase.h"
 #include "sppch.h"
+#include "Spectre/Rendering/MeshBase.h"
 
 namespace Spectre {
 /**

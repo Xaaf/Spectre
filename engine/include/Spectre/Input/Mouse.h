@@ -1,9 +1,9 @@
 #ifndef MOUSE_H
 #define MOUSE_H
 
+#include "sppch.h"
 #include <glm/vec2.hpp>
 #include "InputCodes.h"
-#include "sppch.h"
 
 namespace Spectre {
 /**

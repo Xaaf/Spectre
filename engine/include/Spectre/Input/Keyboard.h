@@ -1,8 +1,8 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
-#include "InputCodes.h"
 #include "sppch.h"
+#include "InputCodes.h"
 
 namespace Spectre {
 /**

@@ -1,8 +1,8 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 
-#include <glm/glm.hpp>
 #include "sppch.h"
+#include <glm/glm.hpp>
 
 namespace Spectre {
 /**

@@ -1,9 +1,9 @@
 #ifndef OPENGLSHADER_H
 #define OPENGLSHADER_H
 
+#include "sppch.h"
 #include <fstream>
 #include "Spectre/Rendering/ShaderBase.h"
-#include "sppch.h"
 
 namespace Spectre {
 /**

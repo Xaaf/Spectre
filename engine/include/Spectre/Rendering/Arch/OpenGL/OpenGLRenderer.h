@@ -1,10 +1,10 @@
 #ifndef OPENGLRENDERER_H
 #define OPENGLRENDERER_H
 
+#include "sppch.h"
 #include "Spectre/Engine.h"
 #include "Spectre/Rendering/Arch/OpenGL/OpenGLShader.h"
 #include "Spectre/Rendering/RendererBase.h"
-#include "sppch.h"
 
 namespace Spectre {
 /**

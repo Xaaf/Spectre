@@ -2,6 +2,7 @@
 #define SHADERBASE_H
 
 #include "sppch.h"
+
 namespace Spectre {
 /**
  * @brief Holds abstract methods related to a basic shader instance.

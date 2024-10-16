@@ -1,8 +1,8 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "Spectre/Rendering/RendererBase.h"
 #include "sppch.h"
+#include "Spectre/Rendering/RendererBase.h"
 
 namespace Spectre {
 /**

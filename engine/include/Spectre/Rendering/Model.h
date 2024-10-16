@@ -1,10 +1,10 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+#include "sppch.h"
 #include "Spectre/Rendering/MeshBase.h"
 #include "Spectre/Rendering/ShaderBase.h"
 #include "Spectre/Rendering/TextureBase.h"
-#include "sppch.h"
 
 namespace Spectre {
 /**

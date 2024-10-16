@@ -1,8 +1,8 @@
 #ifndef MESHBASE_H
 #define MESHBASE_H
 
-#include "Spectre/Rendering/Vertex.h"
 #include "sppch.h"
+#include "Spectre/Rendering/Vertex.h"
 
 namespace Spectre {
 /**
