@@ -20,6 +20,7 @@ set(ENGINE_SOURCES
         src/Spectre/Engine.cpp
         src/Spectre/Input/Keyboard.cpp
         src/Spectre/Input/Mouse.cpp
+        src/Spectre/Rendering/Model.cpp
         src/Spectre/Rendering/Renderer.cpp
         src/Spectre/Rendering/Window.cpp
         src/Spectre/Rendering/Arch/OpenGL/OpenGLMesh.cpp
@@ -32,6 +33,7 @@ set(ENGINE_HEADERS
         include/Spectre/Input/Keyboard.h
         include/Spectre/Input/Mouse.h
         include/Spectre/Rendering/MeshBase.h
+        include/Spectre/Rendering/Model.h
         include/Spectre/Rendering/Renderer.h
         include/Spectre/Rendering/RendererBase.h
         include/Spectre/Rendering/ShaderBase.h
