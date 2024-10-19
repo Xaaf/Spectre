@@ -1,6 +1,8 @@
 #ifndef INPUTCODES_H
 #define INPUTCODES_H
 
+#include "sppch.h"
+
 #define SP_RELEASE 0
 #define SP_PRESS 1
 #define SP_REPEAT 2

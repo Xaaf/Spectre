@@ -1,6 +1,7 @@
 #ifndef LOG_H
 #define LOG_H
 
+#include "sppch.h"
 #include <chrono>
 #include <ctime>
 #include <iomanip>

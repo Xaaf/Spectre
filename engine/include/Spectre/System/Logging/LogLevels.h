@@ -1,6 +1,8 @@
 #ifndef LOGLEVELS_H
 #define LOGLEVELS_H
 
+#include "sppch.h"
+
 /**
  * @brief Enum holding the various levels of log severity.
  */
