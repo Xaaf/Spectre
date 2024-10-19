@@ -2,19 +2,7 @@ project(Engine)
 
 find_package(OpenGL REQUIRED)
 
-include_directories(${OPENGL_INCLUDE_DIRS})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/glad/include)
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/glfw/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/glm)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/stb/include)
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "GLFW Lib Only")
-set(GLFW_INSTALL OFF CACHE BOOL "GLFW Lib Only")
-
+# External dependencies
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../external/glfw ${CMAKE_CURRENT_BINARY_DIR}/build/glfw)
 
 set(ENGINE_SOURCES
@@ -27,7 +15,9 @@ set(ENGINE_SOURCES
         src/Spectre/Rendering/Arch/OpenGL/OpenGLMesh.cpp
         src/Spectre/Rendering/Arch/OpenGL/OpenGLRenderer.cpp
         src/Spectre/Rendering/Arch/OpenGL/OpenGLShader.cpp
-        src/Spectre/Rendering/Arch/OpenGL/OpenGLTexture.cpp)
+        src/Spectre/Rendering/Arch/OpenGL/OpenGLTexture.cpp
+)
+
 set(ENGINE_HEADERS
         include/Spectre/Engine.h
         include/Spectre/Input/InputCodes.h
@@ -47,16 +37,38 @@ set(ENGINE_HEADERS
         include/Spectre/Rendering/Arch/OpenGL/OpenGLTexture.h
         include/Spectre/System/Logging/Colours.h
         include/Spectre/System/Logging/Log.h
-        include/Spectre/System/Logging/LogLevels.h)
+        include/Spectre/System/Logging/LogLevels.h
+)
 
+# GLAD source
 set(GLAD_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/../external/glad/src/glad.c)
 
+# PCH setup
 set(PCH_HEADER ${CMAKE_CURRENT_SOURCE_DIR}/include/sppch.h)
 set(PCH_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/src/sppch.cpp)
 
+# Create PCH target
 add_library(pch STATIC ${PCH_SOURCE})
+
+# Make sure PCH has access to the necessary includes
+target_include_directories(pch PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/../external/glad/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/../external/glfw/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
 target_compile_features(pch PUBLIC cxx_std_17)
 target_precompile_headers(pch PUBLIC ${PCH_HEADER})
 
+# Create engine library
 add_library(engine STATIC ${ENGINE_SOURCES} ${ENGINE_HEADERS} ${GLAD_SOURCE})
-target_link_libraries(engine ${OPENGL_LIBRARIES} glfw)
+
+# Link libraries and include directories for the engine
+target_link_libraries(engine PRIVATE ${OPENGL_LIBRARIES} glfw)
+target_include_directories(engine PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/../external/glad/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../external/glfw/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../external/glm
+    ${CMAKE_CURRENT_SOURCE_DIR}/../external/stb/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
