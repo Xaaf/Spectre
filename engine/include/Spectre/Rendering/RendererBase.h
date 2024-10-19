@@ -2,6 +2,7 @@
 #define RENDERERBASE_H
 
 #include "sppch.h"
+#include "Spectre/Rendering/Model.h"
 
 namespace Spectre {
 /**
@@ -59,6 +60,13 @@ class RendererBase {
          * gets time to safely stop, e.g. terminating GLFW on OpenGL.
          */
         virtual void stop() = 0;
+
+        void addModel(Model* model) { models.push_back(model); }
+        std::vector<Model*> getModels() { return models; }
+        void clearModels() { models.clear(); }
+
+    protected:
+        std::vector<Model*> models;
 };
 }  // namespace Spectre
 

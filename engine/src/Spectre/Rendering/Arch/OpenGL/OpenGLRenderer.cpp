@@ -3,6 +3,7 @@
 #include "Spectre/Input/Mouse.h"
 #include "Spectre/Rendering/Arch/OpenGL/OpenGLMesh.h"
 #include "Spectre/Rendering/Arch/OpenGL/OpenGLTexture.h"
+#include "Spectre/Rendering/Model.h"
 
 using namespace Spectre;
 
@@ -32,6 +33,7 @@ std::vector<int> indices = {
 OpenGLShader* shader = nullptr;
 OpenGLMesh* mesh = nullptr;
 OpenGLTexture* texture = nullptr;
+Model* model = nullptr;
 
 void temp_init() {
     LOG_DEBUG("Calling #temp_init()");
@@ -40,6 +42,8 @@ void temp_init() {
                               "assets/shaders/Default.frag");
     mesh = new OpenGLMesh(vertices, indices);
     texture = new OpenGLTexture("assets/textures/wall.jpg");
+
+    model = new Model(mesh, texture, shader);
 }
 
 /*===========================================================================*/
@@ -124,6 +128,7 @@ bool OpenGLRenderer::createWindow(const std::string& title, int width,
                                  << glGetString(GL_VENDOR));
 
     temp_init();
+    addModel(model);
 
     return true;
 }
@@ -136,14 +141,17 @@ void OpenGLRenderer::update() {
     glClearColor(0.2f, 0.2f, 0.6f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // === TEMPORARY ===
-    // glUseProgram(shaderProgram);
-    shader->use();
-    texture->bind();
-    mesh->bind();
+    for (auto& model : models) {
+        auto shader = model->getShader();
+        auto texture = model->getTexture();
+        auto mesh = model->getMesh();
 
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-    // === TEMPORARY ===
+        shader->use();
+        texture->bind();
+        mesh->bind();
+
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    }
 
     glfwSwapBuffers(m_Window);
     glfwPollEvents();

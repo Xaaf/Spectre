@@ -19,17 +19,22 @@ class Model {
         /**
          * @brief Reference to the model's mesh.
          */
-        std::shared_ptr<MeshBase> mesh;
+        MeshBase* mesh;
 
         /**
          * @brief Texture of the model.
          */
-        std::unique_ptr<TextureBase> texture;
+        TextureBase* texture;
 
         /**
          * @brief Shader of the model.
          */
-        std::unique_ptr<ShaderBase> shader;
+        ShaderBase* shader;
+
+        /**
+         * @brief Debug name of the model.
+         */
+        std::string debugName;
 
     public:
         /**
@@ -42,30 +47,41 @@ class Model {
          * @param texture Texture for the model.
          * @param shader Shader for the model.
          */
-        Model(std::shared_ptr<MeshBase> mesh,
-              std::unique_ptr<TextureBase> texture,
-              std::unique_ptr<ShaderBase> shader);
+        Model(MeshBase* mesh, TextureBase* texture, ShaderBase* shader,
+              std::string debugName = "Unnamed");
+
+        /**
+         * @brief Destroy the model instance.
+         */
+        ~Model();
 
         /**
          * @brief Get the mesh for this model.
          *
          * @return Reference to the mesh.
          */
-        std::shared_ptr<MeshBase> getMesh() const { return mesh; }
+        MeshBase* getMesh() const { return mesh; }
 
         /**
          * @brief Get the texture for this model.
          *
          * @return `TextureBase` instance.
          */
-        TextureBase* getTexture() const { return texture.get(); }
+        TextureBase* getTexture() const { return texture; }
 
         /**
          * @brief Get the shader for this model.
          *
          * @return `ShaderBase` instance.
          */
-        ShaderBase* getShader() const { return shader.get(); }
+        ShaderBase* getShader() const { return shader; }
+
+        /**
+         * @brief Get the debug name for this model.
+         *
+         * @return `std::string` with the debug name.
+         */
+        std::string getDebugName() const { return debugName; }
 };
 }  // namespace Spectre
 

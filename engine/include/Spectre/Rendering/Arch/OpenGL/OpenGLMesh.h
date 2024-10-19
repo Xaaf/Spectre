@@ -10,7 +10,7 @@ namespace Spectre {
  *
  * Uses the OpenGL API to handle mesh creation and binding.
  */
-class OpenGLMesh : MeshBase {
+class OpenGLMesh : public MeshBase {
     public:
         /**
          * @brief Creates a new OpenGLMesh.

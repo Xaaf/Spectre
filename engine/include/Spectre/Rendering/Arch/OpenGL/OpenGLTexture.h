@@ -10,7 +10,7 @@ namespace Spectre {
  *
  * Uses the OpenGL API to handle texture creation, loading and binding.
  */
-class OpenGLTexture : TextureBase {
+class OpenGLTexture : public TextureBase {
     private:
         /**
          * @brief Width of the texture in pixels.

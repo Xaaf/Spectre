@@ -2,7 +2,12 @@
 
 using namespace Spectre;
 
-Model::Model(std::shared_ptr<MeshBase> mesh,
-             std::unique_ptr<TextureBase> texture,
-             std::unique_ptr<ShaderBase> shader)
-    : mesh(mesh), texture(std::move(texture)), shader(std::move(shader)) {}
+Model::Model(MeshBase* mesh, TextureBase* texture, ShaderBase* shader,
+             std::string debugName)
+    : mesh(mesh), texture(texture), shader(shader), debugName(debugName) {}
+
+Model::~Model() {
+    delete mesh;
+    delete texture;
+    delete shader;
+}
