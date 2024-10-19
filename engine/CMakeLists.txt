@@ -4,11 +4,12 @@ find_package(OpenGL REQUIRED)
 
 include_directories(${OPENGL_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/glad/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/glfw/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/glm)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/stb/include)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "GLFW Lib Only")

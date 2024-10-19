@@ -2,6 +2,7 @@
 #define RENDERER_H
 
 #include "sppch.h"
+#include "Spectre/Rendering/Model.h"
 #include "Spectre/Rendering/RendererBase.h"
 
 namespace Spectre {

@@ -4,6 +4,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/engine/include)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/glad/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../external/glm)
 
 set(GAME_SOURCES
         src/Main.cpp
